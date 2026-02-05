@@ -1,64 +1,75 @@
 export const initialMembers = [
     {
-        id: '1',
-        name: 'Nguyễn Văn A',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix',
-        stats: {
-            stat1: 85, // Nút số
-            stat2: 70, // Mặt chạm
-            stat3: 90, // Tài chính
-            stat4: 80, // Độ lỳ
-        }
+        id: 'black',
+        name: 'Black',
+        avatar: '/avatars/black.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
     },
     {
-        id: '2',
-        name: 'Trần Thị B',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka',
-        stats: {
-            stat1: 45,
-            stat2: 95,
-            stat3: 75,
-            stat4: 60,
-        }
+        id: 'dungx',
+        name: 'Dungx',
+        avatar: '/avatars/dungx.png',
+        stats: { stat1: 37, stat2: 37, stat3: 37, stat4: 37 }
     },
     {
-        id: '3',
-        name: 'Lê Văn C',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bob',
-        stats: {
-            stat1: 95,
-            stat2: 50,
-            stat3: 60,
-            stat4: 90,
-        }
+        id: 'phu',
+        name: 'Phú',
+        avatar: '/avatars/phu.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
     },
     {
-        id: '4',
-        name: 'Phạm Thị D',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Dora',
-        stats: {
-            stat1: 60,
-            stat2: 85,
-            stat3: 80,
-            stat4: 70,
-        }
+        id: 'thaihung',
+        name: 'Thái Hưng M B',
+        avatar: '/avatars/thaihung.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
     },
     {
-        id: '5',
-        name: 'Hoàng Văn E',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Elmo',
-        stats: {
-            stat1: 75,
-            stat2: 75,
-            stat3: 75,
-            stat4: 75,
-        }
+        id: 'tienanh',
+        name: 'Nguyễn Tiến Anh',
+        avatar: '/avatars/tienanh.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
+    },
+    {
+        id: 'khaixp',
+        name: 'Khải Xp',
+        avatar: '/avatars/khaixp.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
+    },
+    {
+        id: 'thuanxp',
+        name: 'Thuận Xp',
+        avatar: '/avatars/thuanxp.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
+    },
+    {
+        id: 'comnha',
+        name: 'Cơm Nhà Quán',
+        avatar: '/avatars/comnha.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
+    },
+    {
+        id: 'giangxp',
+        name: 'Giang Xp',
+        avatar: '/avatars/giangxp.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
+    },
+    {
+        id: 'vancu',
+        name: 'Văn Cư',
+        avatar: '/avatars/vancu.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
+    },
+    {
+        id: 'hoanghuynh',
+        name: 'Hoàng Huỳnh',
+        avatar: '/avatars/hoanghuynh.png',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
     }
 ];
 
 export const statConfig = {
-    stat1: { label: 'Nút số', color: '#FF6B6B' },   // Red/Outcome related?
-    stat2: { label: 'Mặt chạm', color: '#4ECDC4' }, // Teal/Face related
-    stat3: { label: 'Tài chính', color: '#FED766' },// Yellow/Gold
-    stat4: { label: 'Độ lỳ', color: '#2AB7CA' },    // Blue/Resilience
+    stat1: { label: 'Nút số', color: '#FF6B6B' },
+    stat2: { label: 'Mặt chạm', color: '#4ECDC4' },
+    stat3: { label: 'Tài chính', color: '#FED766' },
+    stat4: { label: 'Độ lỳ', color: '#2AB7CA' },
 };

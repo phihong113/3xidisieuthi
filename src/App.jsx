@@ -4,27 +4,45 @@ import { Trophy, Swords, RefreshCw, CheckCircle2, Settings, X, Plus, Trash2, Sav
 import { initialMembers, statConfig as defaultStatConfig } from './data';
 import './index.css';
 
-function App() {
-  const [members, setMembers] = useState(() => {
-    const saved = localStorage.getItem('zalo_battle_members');
-    return saved ? JSON.parse(saved) : initialMembers;
-  });
+import { db } from './firebase';
+import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 
-  const [statConfig, setStatConfig] = useState(() => {
-    const saved = localStorage.getItem('zalo_battle_stats');
-    return saved ? JSON.parse(saved) : defaultStatConfig;
-  });
+function App() {
+  // Initialize with defaults, but will be overwritten by DB
+  const [members, setMembers] = useState(initialMembers);
+  const [statConfig, setStatConfig] = useState(defaultStatConfig);
 
   const [selectedIds, setSelectedIds] = useState([]);
-  const [viewMode, setViewMode] = useState('selection'); // 'selection', 'comparison', 'edit'
+  const [viewMode, setViewMode] = useState('selection');
 
+  // --- FIREBASE SYNC ---
   useEffect(() => {
-    localStorage.setItem('zalo_battle_members', JSON.stringify(members));
-  }, [members]);
+    // Listen to real-time updates from Firestore
+    const unsub = onSnapshot(doc(db, "zalo_app", "main_data"), (doc) => {
+      if (doc.exists()) {
+        const data = doc.data();
+        if (data.members) setMembers(data.members);
+        if (data.statConfig) setStatConfig(data.statConfig);
+      } else {
+        // First run: Create the doc with initial data
+        saveToDb(initialMembers, defaultStatConfig);
+      }
+    });
+    return () => unsub();
+  }, []);
 
-  useEffect(() => {
-    localStorage.setItem('zalo_battle_stats', JSON.stringify(statConfig));
-  }, [statConfig]);
+  const saveToDb = async (newMembers, newConfig) => {
+    try {
+      await setDoc(doc(db, "zalo_app", "main_data"), {
+        members: newMembers,
+        statConfig: newConfig
+      });
+    } catch (error) {
+      console.error("Error saving to DB:", error);
+      alert("Lỗi lưu dữ liệu! Kiểm tra kết nối Internet.");
+    }
+  };
+  // ---------------------
 
   const toggleSelection = (id) => {
     if (viewMode !== 'selection') return;
@@ -62,7 +80,10 @@ function App() {
   const closeEditMode = () => setViewMode('selection');
 
   const updateMember = (id, updates) => {
-    setMembers(members.map(m => m.id === id ? { ...m, ...updates } : m));
+    const newMembers = members.map(m => m.id === id ? { ...m, ...updates } : m);
+    // Optimistic update (optional, but using DB sync for truth)
+    // setMembers(newMembers); 
+    saveToDb(newMembers, statConfig);
   };
 
   const addMember = () => {
@@ -73,7 +94,8 @@ function App() {
       avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${newId}`,
       stats: { stat1: 50, stat2: 50, stat3: 50, stat4: 50 }
     };
-    setMembers([...members, newMember]);
+    const newMembers = [...members, newMember];
+    saveToDb(newMembers, statConfig);
   };
 
   const removeMember = (id) => {
@@ -81,17 +103,19 @@ function App() {
       alert("Cần ít nhất 2 thành viên để so kèo!");
       return;
     }
-    setMembers(members.filter(m => m.id !== id));
+    const newMembers = members.filter(m => m.id !== id);
     if (selectedIds.includes(id)) {
       setSelectedIds(selectedIds.filter(sid => sid !== id));
     }
+    saveToDb(newMembers, statConfig);
   };
 
   const updateStatConfig = (key, updates) => {
-    setStatConfig(prev => ({
-      ...prev,
-      [key]: { ...prev[key], ...updates }
-    }));
+    const newConfig = {
+      ...statConfig,
+      [key]: { ...statConfig[key], ...updates }
+    };
+    saveToDb(members, newConfig);
   };
 
   const selectedMembers = members.filter((m) => selectedIds.includes(m.id));
