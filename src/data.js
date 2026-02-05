@@ -64,6 +64,12 @@ export const initialMembers = [
         name: 'Hoàng Huỳnh',
         avatar: '/avatars/hoanghuynh.png',
         stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
+    },
+    {
+        id: 'new_member_12',
+        name: 'Thành viên mới',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=NewMember12',
+        stats: { stat1: 35, stat2: 35, stat3: 35, stat4: 35 }
     }
 ];
 
