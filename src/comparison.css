@@ -1,0 +1,129 @@
+/* Existing styles... */
+
+/* Score Control */
+.score-control {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.score-control label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.score-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Fighters Score Board */
+.fighters-score-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.fighter-score-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 45%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 10px;
+    transition: all 0.3s;
+}
+
+.fighter-score-card.winner {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid var(--success-color);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.fighter-score-card.loser {
+    opacity: 0.7;
+}
+
+.avatar-score {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    object-fit: cover;
+}
+
+.score-info {
+    flex: 1;
+}
+
+.score-info.tr {
+    text-align: right;
+}
+
+.score-info h3 {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.score-info.tr h3 {
+    text-align: right;
+}
+
+.final-score {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text-primary);
+}
+
+.winner .final-score {
+    color: var(--success-color);
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.total-stat {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+.vs-divider {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: #222;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.vs-text {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    font-style: italic;
+}
